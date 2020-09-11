@@ -1,21 +1,16 @@
 var AWS = require("aws-sdk");
 let awsConfig = {
     "region": "us-east-1",
-    "endpoint": "http://dynamodb.us-east-1.amazonaws.com",
-    "accessKeyId": "AKIAQISFISKOBS4FLFNG",
-    "secretAccessKey": "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"
 };
+
 exports.handler = function (event, context, callback) {
-    
-    
     AWS.config.update(awsConfig);
     let docClient = new AWS.DynamoDB.DocumentClient();
     
     var params = {
-        TableName:table,
-        Item:event.body
-        }
-    };
+        TableName:"customers",
+        Item:{"dni": event.body["dni"]}
+    }
 
     console.log("Adding a new item...");
     docClient.put(params, function(err, data) {
@@ -34,5 +29,4 @@ exports.handler = function (event, context, callback) {
       body: event.body,
     }
     callback(null, response)
-  }
-
+};

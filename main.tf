@@ -13,7 +13,7 @@ resource "aws_lambda_function" "customerRegister" {
 
   # The bucket name as created earlier with "aws s3api create-bucket"
   s3_bucket = "10-pines-conf-app"
-  s3_key    = "0.0.4/customerRegister.zip"
+  s3_key    = "0.0.7/customerRegister.zip"
 
   # "main" is the filename within the zip file (main.js) and "handler"
   # is the name of the property under which the handler function was
