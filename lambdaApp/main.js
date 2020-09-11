@@ -7,9 +7,14 @@ exports.handler = function (event, context, callback) {
     AWS.config.update(awsConfig);
     let docClient = new AWS.DynamoDB.DocumentClient();
     
+    console.log(event);
+    console.log(JSON.stringify(event));
+
+    let eventBody= event.body && JSON.parse(event.body);
+
     var params = {
         TableName:"customers",
-        Item:{"dni": event.body["dni"]}
+        Item:{"dni":eventBody.dni, "name": eventBody.name, "lastname": eventBody.lastname}
     }
 
     console.log("Adding a new item...");
